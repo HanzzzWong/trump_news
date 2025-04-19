@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trump News Tracker - Launcher</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #a61c00;
+        }
+        .instructions {
+            text-align: left;
+            background: #f1f1f1;
+            padding: 15px;
+            border-left: 4px solid #a61c00;
+            margin: 20px 0;
+        }
+        .btn-start {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #a61c00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-start:hover {
+            background-color: #c22000;
+        }
+        .code {
+            background: #2d2d2d;
+            color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trump News Tracker - Launcher</h1>
+        <p>This page will help you launch the Trump News Tracker application.</p>
+        
+        <div class="instructions">
+            <h3>Unfortunately, browsers cannot directly run scripts for security reasons.</h3>
+            <p>Please follow one of these methods to start the application:</p>
+            
+            <h4>Method 1: Use the VBS Launcher (Recommended for Windows)</h4>
+            <p>Double-click the <strong>launch-app.vbs</strong> file in the same folder as this HTML file.</p>
+            
+            <h4>Method 2: Manual Command Line</h4>
+            <ol>
+                <li>Open a command prompt or terminal in this folder</li>
+                <li>Run one of the following commands depending on your operating system:</li>
+            </ol>
+            <p><strong>For Windows:</strong></p>
+            <div class="code">start-app.bat</div>
+            <p><strong>For Mac/Linux:</strong></p>
+            <div class="code">./start-app.sh</div>
+        </div>
+        
+        <p>After running the command, the application will start and open in your browser automatically.</p>
+        
+        <div style="margin-top: 30px;">
+            <button class="btn-start" id="startForWindows">START ON WINDOWS</button>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                (This button tries to use ActiveX which only works in Internet Explorer)
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('startForWindows').addEventListener('click', function() {
+            // For Windows, we can try to use ActiveX (only works in IE) or other approaches
+            try {
+                // Try Windows-specific approach
+                var shell = new ActiveXObject("WScript.Shell");
+                shell.Run("start-app.bat", 1, true);
+                alert("Server starting! Please wait while the app launches in your browser.");
+            } catch (e) {
+                alert("Your browser doesn't allow direct script execution for security reasons.\n\nPlease open a Command Prompt in this folder and run: start-app.bat");
+            }
+        });
+    </script>
+</body>
+</html> 

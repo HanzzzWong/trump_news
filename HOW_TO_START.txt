@@ -1,0 +1,30 @@
+===============================================================
+        HOW TO START TRUMP NEWS TRACKER APPLICATION
+===============================================================
+
+For Windows users:
+-----------------
+Option 1 (Easiest): 
+   Double-click the "launch-app.vbs" file
+
+Option 2:
+   Double-click the "start-app.bat" file
+
+Option 3:
+   Open Command Prompt in this folder and type: start-app.bat
+
+
+For Mac/Linux users:
+-------------------
+Option 1:
+   Open Terminal in this folder and type: chmod +x start-app.sh && ./start-app.sh
+
+Option 2:
+   Open Terminal in this folder and type: node server.js
+
+
+===============================================================
+IMPORTANT NOTE: 
+Opening index.html directly will not work properly as the 
+application needs the server to be running first.
+=============================================================== 

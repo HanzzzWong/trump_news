@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUMP NEWS TRACKER - MAKE NEWS GREAT AGAIN!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .trump-title {
+            color: #a61c00;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .btn-trump {
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            margin: 30px auto;
+            background-color: #a61c00;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-trump:hover {
+            background-color: #c22000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .gif-wrapper {
+            max-width: 400px;
+            border: 3px solid #a61c00;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .gif-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .trump-flag {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .trump-flag span {
+            color: #a61c00;
+            font-size: 40px;
+            letter-spacing: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="trump-flag">
+            <span>★ ★ ★ ★ ★</span>
+        </div>
+        <h1 class="trump-title">Trump News Tracker</h1>
+        <p class="subtitle">The BEST, most TREMENDOUS news tracker ever created. BELIEVE ME!</p>
+        <p class="subtitle">MAKE NEWS GREAT AGAIN!</p>
+    </header>
+    
+    <a href="http://localhost:3000" class="btn-trump">
+        LAUNCH THE TRACKER NOW!
+    </a>
+    
+    <div class="gif-container">
+        <div class="gif-wrapper">
+            <img src="1.gif" alt="Trump GIF 1">
+        </div>
+        <div class="gif-wrapper">
+            <img src="2.gif" alt="Trump GIF 2">
+        </div>
+    </div>
+    
+    <div class="trump-flag">
+        <span>★ ★ ★ ★ ★</span>
+    </div>
+    
+    <script>
+        // Function to check if we're running from file://
+        function isRunningLocalFile() {
+            return window.location.protocol === 'file:';
+        }
+
+        // Function to start the server
+        function startServer() {
+            // If running from file:// protocol, show instructions
+            if (isRunningLocalFile()) {
+                // Get path to start-launcher.html
+                var launcherPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/start-launcher.html';
+                
+                // Show instructions in an alert dialog
+                var message = "The application must be accessed through a server to work properly.\n\n";
+                message += "Please use one of these options:\n";
+                message += "1. Open 'start-launcher.html' for instructions on how to start the server\n";
+                message += "2. Run 'start-app.bat' (Windows) or './start-app.sh' (Mac/Linux) to start the server";
+                
+                alert(message);
+                
+                // Optionally, open the launcher
+                if (confirm("Would you like to open the launcher now?")) {
+                    window.location.href = 'file://' + launcherPath;
+                }
+            } else {
+                // Server-based approach (original code)
+                fetch('/start-server', {
+                    method: 'POST'
+                }).catch(error => {
+                    console.log('Server might already be running or fetch failed:', error);
+                });
+            }
+            
+            // Check if server is running after a short delay
+            setTimeout(checkServerStatus, 3000);
+        }
+        
+        // Function to check if server is running
+        function checkServerStatus() {
+            fetch('http://localhost:3000/api/status', { 
+                method: 'GET',
+                mode: 'no-cors' // Since we just want to check if server responds
+            })
+            .then(() => {
+                console.log('Server appears to be running');
+            })
+            .catch(() => {
+                console.log('Server might not be running yet, retrying...');
+                setTimeout(checkServerStatus, 2000);
+            });
+        }
+        
+        // Start server when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            // If we're opening from file system, show the instructions
+            if (isRunningLocalFile()) {
+                startServer();
+            } else if (!localStorage.getItem('serverStartAttempted')) {
+                // Only try to start the server once
+                startServer();
+                localStorage.setItem('serverStartAttempted', 'true');
+            }
+        });
+        
+        // Add a click event to the button
+        document.querySelector('.btn-trump').addEventListener('click', function(e) {
+            // First ensure server is running
+            if (!isRunningLocalFile()) {
+                startServer();
+            }
+            // Then redirect to the application
+            setTimeout(() => {
+                window.location.href = 'http://localhost:3000';
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
