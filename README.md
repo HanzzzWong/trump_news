@@ -11,12 +11,10 @@ A web application for tracking news, media, sentiment analysis, timeline, and fi
 * Finance tracker showing correlation between Trump events and financial markets
 * Entity mention leaderboard and analysis
 
-## Automatic Server Startup
+## How to run the app? 
 
-The application now includes an automatic server startup feature. When you open `index.html` in your browser, it will:
-
-1. Automatically attempt to start the server via the `/start-server` API endpoint
-2. Check if the server is running at regular intervals
+1. Download the file
+2. Click " Trump Tracker " .bat file to open the website
 3. Redirect you to the application once the server is ready
 
 This makes it easier to use the Trump News Tracker - simply open the HTML file and everything will start automatically!
